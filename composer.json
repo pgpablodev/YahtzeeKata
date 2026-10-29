@@ -1,0 +1,17 @@
+{
+    "name": "pablo/yahtzee-kata",
+    "autoload": {
+        "psr-4": {
+            "Pablo\\YahtzeeKata\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pablo",
+            "email": "povarg.pablo@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    }
+}
