@@ -113,4 +113,14 @@ class Yahtzee{
     public function chance(array $dice): int{
         return array_sum($dice);
     }
+
+    public function jokerScore(string $category, array $dice): int{
+        return match($category){
+            'fullHouse' => 25,
+            'smallStraight' => 30,
+            'largeStraight' => 40,
+            'threeOfAKind', 'fourOfAKind', 'chance' => array_sum($dice),
+            default => throw new \InvalidArgumentException('Unknown category'),
+        };
+    }
 }

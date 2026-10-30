@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use PHPUnit\Framework\TestCase;
 use Pablo\YahtzeeKata\Yahtzee;
 
@@ -117,5 +119,47 @@ class YahtzeeTest extends TestCase{
         $dice = [1, 2, 3, 4, 5];
         $yahtzee = new Yahtzee();
         $this->assertEquals(15, $yahtzee->chance($dice));
+    }
+
+    public function test_scores_full_house_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(25, $yahtzee->jokerScore('fullHouse', $dice));
+    }
+
+    public function test_scores_three_of_a_kind_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(20, $yahtzee->jokerScore('threeOfAKind', $dice));
+    }
+
+    public function test_scores_four_of_a_kind_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(20, $yahtzee->jokerScore('fourOfAKind', $dice));
+    }
+
+    public function test_scores_small_straight_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(30, $yahtzee->jokerScore('smallStraight', $dice));
+    }
+
+    public function test_scores_large_straight_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(40, $yahtzee->jokerScore('largeStraight', $dice));
+    }
+
+    public function test_scores_chance_with_yahtzee_joker(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(20, $yahtzee->jokerScore('chance', $dice));
+    }
+
+    public function test_rejects_unknown_joker_category(): void{
+        $yahtzee = new Yahtzee();
+        $this->expectException(\InvalidArgumentException::class);
+        $yahtzee->jokerScore('unknown', [4, 4, 4, 4, 4]);
     }
 }
