@@ -88,4 +88,34 @@ class YahtzeeTest extends TestCase{
         $yahtzee = new Yahtzee();
         $this->assertEquals(0, $yahtzee->smallStraight($dice));
     }
+
+    public function test_scores_large_straight(): void{
+        $dice = [2, 3, 4, 5, 6];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(40, $yahtzee->largeStraight($dice));
+    }
+
+    public function test_scores_zero_without_large_straight(): void{
+        $dice = [1, 2, 3, 4, 6];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(0, $yahtzee->largeStraight($dice));
+    }
+
+    public function test_scores_yahtzee(): void{
+        $dice = [4, 4, 4, 4, 4];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(50, $yahtzee->yahtzee($dice));
+    }
+
+    public function test_scores_zero_without_yahtzee(): void{
+        $dice = [4, 4, 4, 4, 5];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(0, $yahtzee->yahtzee($dice));
+    }
+
+    public function test_scores_chance(): void{
+        $dice = [1, 2, 3, 4, 5];
+        $yahtzee = new Yahtzee();
+        $this->assertEquals(15, $yahtzee->chance($dice));
+    }
 }

@@ -87,4 +87,30 @@ class Yahtzee{
 
         return 0;
     }
+
+    public function largeStraight(array $dice): int{
+        $uniqueDice = array_unique($dice);
+        sort($uniqueDice);
+
+        $sequences = [
+            [1, 2, 3, 4, 5],
+            [2, 3, 4, 5, 6],
+        ];
+
+        foreach($sequences as $sequence){
+            if($uniqueDice === $sequence){
+                return 40;
+            }
+        }
+
+        return 0;
+    }
+
+    public function yahtzee(array $dice): int{
+        return count(array_unique($dice)) === 1 ? 50 : 0;
+    }
+
+    public function chance(array $dice): int{
+        return array_sum($dice);
+    }
 }
